@@ -3,6 +3,10 @@ __Description__: Demonstrate test automation of [http://demoqa.com](http://demoq
 
 __Platform__: Darwin
 
+#### Install Python
+
+Download [Python 3.9.0][https://www.python.org/downloads/release/python-390/] and install on Mac.
+
 #### Setup Virtual Environment
 ```
 make setup
