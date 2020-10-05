@@ -1,0 +1,7 @@
+pylint
+pytest
+pytest-randomly
+pytest-repeat
+pytest-xdist
+selenium
+
