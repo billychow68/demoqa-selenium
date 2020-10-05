@@ -1,5 +1,5 @@
 # demoqa-selenium
-Demonstrate test automation using Python, PyTest and Selenium WebDriver.
+Demonstrate test automation of ```http://demoqa.com``` website using Python, PyTest and Selenium WebDriver.
 
 #### Setup Virtual Environment
 ```
