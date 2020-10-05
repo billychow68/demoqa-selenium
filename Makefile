@@ -8,17 +8,17 @@ setup:
 	source ~/.bash_profile
 
 install:
-	pip install --upgrade pip && pip install -q -r requirements.txt
+	pip3 install --upgrade pip && pip3 install -r requirements.txt
 
 test:
 	# sequential execution:
 	# pytest -s -v --setup-show -p no:randomly
 	# parallel execution:
-	# pytest -s -v --setup-show -n auto -p no:randomly
+	pytest -s -v --setup-show -n auto -p no:randomly
 	# random execution:
 	# pytest -s -v --setup-show
 	# parallel and random execution:
-	pytest -s -v --setup-show -n auto
+	# pytest -s -v --setup-show -n auto
 
 lint:
 	pylint tests
