@@ -5,7 +5,7 @@ __Platform__: Darwin
 
 #### Install Python
 
-Download [Python 3.9.0][https://www.python.org/downloads/release/python-390/] and install on Mac.
+Download and install [Python 3.9.0](https://www.python.org/downloads/release/python-390/) for Mac.
 
 #### Setup Virtual Environment
 ```
