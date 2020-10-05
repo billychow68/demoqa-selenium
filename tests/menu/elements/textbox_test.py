@@ -1,5 +1,5 @@
-from demoqa.pages.menu.nav_bar import MenuNavBar
-from demoqa.pages.menu.elements.textbox import ElementsTextboxArea
+from pages.menu.nav_bar import MenuNavBar
+from pages.menu.elements.textbox import ElementsTextboxArea
 import pytest
 import time
 

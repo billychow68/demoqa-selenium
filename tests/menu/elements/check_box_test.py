@@ -1,5 +1,5 @@
-from demoqa.pages.menu.nav_bar import MenuNavBar
-from demoqa.pages.menu.elements.check_box import ElementsCheckBoxArea
+from pages.menu.nav_bar import MenuNavBar
+from pages.menu.elements.check_box import ElementsCheckBoxArea
 import pytest
 import time
 

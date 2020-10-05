@@ -1,5 +1,5 @@
-from demoqa.pages.menu.nav_bar import MenuNavBar
-from demoqa.pages.menu.elements.radio_button import ElementsRadioButtonArea
+from pages.menu.nav_bar import MenuNavBar
+from pages.menu.elements.radio_button import ElementsRadioButtonArea
 import pytest
 import time
 

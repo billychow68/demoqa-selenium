@@ -1,5 +1,5 @@
-from demoqa.pages.menu.nav_bar import MenuNavBar
-from demoqa.pages.menu.forms.practice_form import FormsPracticeFormArea
+from pages.menu.nav_bar import MenuNavBar
+from pages.menu.forms.practice_form import FormsPracticeFormArea
 import pytest
 import time
 

@@ -1,4 +1,4 @@
-from demoqa.pages.menu.nav_bar import MenuNavBar
+from pages.menu.nav_bar import MenuNavBar
 import time
 
 

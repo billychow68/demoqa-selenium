@@ -1,6 +1,6 @@
 import pytest
 from selenium import webdriver
-from demoqa.pages.home_page import HomePage
+from pages.home_page import HomePage
 import time
 
 @pytest.fixture(scope="function")
