@@ -1,5 +1,7 @@
 # demoqa-selenium
-Demonstrate test automation of ```http://demoqa.com``` website using Python, PyTest and Selenium WebDriver.
+__Description__: Demonstrate test automation of [http://demoqa.com](http://demoqa.com) website using Python, PyTest and Selenium WebDriver.
+
+__Platform__: Darwin
 
 #### Setup Virtual Environment
 ```
@@ -15,7 +17,7 @@ make install
 ```
 demoqa
 ```
-You should see ```(.demoqa-selenium)``` in your command prompt
+You should see ```(.demoqa-selenium)``` in your command prompt.
 
 #### Default: Install Dependencies and Execute Tests
 ```
