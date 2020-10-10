@@ -47,7 +47,6 @@ class ElementsTextboxArea(BasePage):
             self.send_keys(self.elememts_permanentaddress_loc, perm_addr)
         if self.is_displayed(self.submit_button_loc, 30):
             self.click(self.submit_button_loc)
-        time.sleep(2)
 
     def validate_form_submitted_data(self):
         pass

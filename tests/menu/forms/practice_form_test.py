@@ -1,15 +1,13 @@
-from pages.menu.nav_bar import MenuNavBar
+"""This module tests the practice form page"""
 from pages.menu.forms.practice_form import FormsPracticeFormArea
-import pytest
-import time
 
 
 class TestPracticeFormArea:
+    """This class contains the test cases for the practice form page"""
 
     def test_page_load(self, homepage):
-        homepage.open_home_page()
-        homepage.select_forms_option()
-        menu_nav_bar = MenuNavBar(homepage.get_driver())
-        menu_nav_bar.select_forms_practice_form_menu_item()
+        """This method validates the practice page load"""
         forms_practice_area = FormsPracticeFormArea(homepage.get_driver())
+        forms_practice_area.open_practice_form_url()
         assert forms_practice_area.validate_page_load()
+

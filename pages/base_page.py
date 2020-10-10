@@ -2,7 +2,10 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
+from datetime import datetime
+from os import getcwd
 from abc import abstractmethod
+from pytest_html import extras
 
 
 class BasePage:
@@ -72,6 +75,12 @@ class BasePage:
 
     def scroll_to_bottom_of_page(self):
         self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+
+    # def capture_screenshot(self, name, extra):
+    #     """This function will capture the screenshot for the HTML report."""
+    #     report_path = '/Users/billy/training/pycharm-projects/demoqa-selenium/reports/assets/'
+    #     self.driver.save_screenshot(report_path + name)
+    #     extra.append(extras.png(report_path + name))
 
     @abstractmethod
     def validate_page_load(self):

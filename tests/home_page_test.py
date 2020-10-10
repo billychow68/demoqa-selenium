@@ -1,10 +1,8 @@
+"""This module tests the home page"""
 import pytest
-import time
+
 
 class TestHomePage:
-
-    def teardown(self):
-        time.sleep(2)
 
     def test_page_load(self, homepage):
         homepage.open_home_page()

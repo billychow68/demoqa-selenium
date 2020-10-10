@@ -8,6 +8,7 @@ class FormsPracticeFormArea(BasePage):
     def __init__(self, driver):
         super(FormsPracticeFormArea, self).__init__(driver)
 
+    practice_form_url = "https://demoqa.com/automation-practice-form"
     name_label_loc = (By.ID, 'userName-label')
     name_fname_loc = (By.CSS_SELECTOR, '#firstName')
     name_lname_loc = (By.CSS_SELECTOR, '#lastName')
@@ -36,6 +37,9 @@ class FormsPracticeFormArea(BasePage):
     state_loc = (By.XPATH, '//*/div[@id="stateCity-wrapper"]/div[2]/div/div/div[2]/div')
     city_loc = (By.XPATH, '//*/div[@id="stateCity-wrapper"]/div[3]')
     submit_loc = (By.ID, "submit")
+
+    def open_practice_form_url(self):
+        self.driver.get(self.practice_form_url)
 
     def validate_page_load(self):
         if self.is_displayed(self.name_label_loc, 10) and \

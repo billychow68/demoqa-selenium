@@ -14,7 +14,7 @@ test:
 	# sequential execution:
 	# pytest -s -v --setup-show -p no:randomly
 	# parallel execution:
-	pytest -s -v --setup-show -n auto -p no:randomly
+	pytest -s -v --setup-show -n auto -p no:randomly --html=reports/report.html --self-contained-html
 	# random execution:
 	# pytest -s -v --setup-show
 	# parallel and random execution:

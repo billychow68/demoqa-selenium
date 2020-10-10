@@ -4,10 +4,6 @@ import time
 
 class TestMenuNavBar:
 
-    @staticmethod
-    def teardown():
-        time.sleep(2)
-
     def test_elements_menu(self, homepage):
         homepage.open_home_page()
         homepage.select_elements_option()
