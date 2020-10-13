@@ -13,7 +13,7 @@ def homepage(request):
     """The fixture to create and destroy the webdriver"""
     driver = webdriver.Chrome()
     # self.driver.implicitly_wait(10)
-    # driver.maximize_window()
+    driver.maximize_window()
     # driver.get("http://demoqa.com")
 
     def close():
