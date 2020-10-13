@@ -9,7 +9,7 @@ import shutil
 
 
 @pytest.fixture(scope="function")
-def homepage(request):
+def driver(request):
     """The fixture to create and destroy the webdriver"""
     driver = webdriver.Chrome()
     # self.driver.implicitly_wait(10)
@@ -21,7 +21,7 @@ def homepage(request):
         driver.quit()
 
     request.addfinalizer(close)
-    return HomePage(driver)
+    return driver
 
 def pytest_sessionstart(session):
     path = os.path.join(rootpath.detect(), "reports")
@@ -42,7 +42,7 @@ def pytest_runtest_makereport(item, call):
     if report.when == 'call':
         xfail = hasattr(report, 'wasxfail')
         if (report.skipped and xfail) or (report.failed and not xfail):
-            driver = item.funcargs['request'].getfixturevalue('homepage').driver
+            driver = item.funcargs['request'].getfixturevalue('driver')
             timestamp = datetime.now().strftime('%H-%M-%S.%f')[:-3]
             path = os.path.join(rootpath.detect(), "reports", "screenshot_" + timestamp + ".png")
             driver.save_screenshot(path)
