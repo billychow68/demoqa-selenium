@@ -24,9 +24,10 @@ def homepage(request):
     return HomePage(driver)
 
 def pytest_sessionstart(session):
-    temp = os.path.join(rootpath.detect(), "reports")
-    shutil.rmtree(temp)
-    os.makedirs(temp)
+    path = os.path.join(rootpath.detect(), "reports")
+    if os.path.exists(path):
+        shutil.rmtree(path)
+    os.makedirs(path)
 
 def pytest_sessionfinish(session, exitstatus):
     pass
