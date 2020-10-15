@@ -9,20 +9,47 @@ from pytest_html import extras
 
 
 class BasePage:
-    def __init__(self, driver):
-        self.driver = driver
+    """Base class for page object model"""
+
+    _handles = None
+
+    def __init__(self, driver_):
+        self.driver = driver_
 
     def get_driver(self):
         return self.driver
 
     def get_title(self):
-        return self.get_title()
+        return self.driver.title
 
     def get_url(self):
-        return self.get_url()
+        return self.driver.current_url
 
     def open_url(self, url):
         self.driver.get(url)
+        self._update_window_handles()
+
+    def open_url_in_new_window(self, url):
+        """Open the URL in a new tab."""
+        js = f'window.open({url})'
+        self.driver.execute_script(js)
+        self._update_window_handles()
+
+    def close(self):
+        """Close tab"""
+        self.driver.close()
+        self._update_window_handles()
+
+    def get_number_of_handles(self):
+        self._update_window_handles()
+        return len(self._handles)
+
+    def _update_window_handles(self):
+        """Update the private _handles class variable with all the window (tabs) handles."""
+        self._handles = self.driver.window_handles
+
+    def switch_to_window_handle(self, index):
+        self.driver.switch_to.window(self._handles[index])
 
     def find_element(self, locator):
         return self.driver.find_element(locator[0], locator[1])
@@ -61,26 +88,24 @@ class BasePage:
             except NoSuchElementException:
                 return False
 
+    def is_text_displayed(self, locator, text, timeout=0):
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.text_to_be_present_in_element(locator, text))
+            except TimeoutException:
+                return False
+            else:
+                return True
+
     def is_enabled(self, locator):
-        if self.find_element(locator).is_enabled():
-            return True
-        else:
-            return False
+        return self.find_element(locator).is_enabled()
 
     def is_selected(self, locator):
-        if self.find_element(locator).is_selected():
-            return True
-        else:
-            return False
+        return self.find_element(locator).is_selected()
 
     def scroll_to_bottom_of_page(self):
         self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-
-    # def capture_screenshot(self, name, extra):
-    #     """This function will capture the screenshot for the HTML report."""
-    #     report_path = '/Users/billy/training/pycharm-projects/demoqa-selenium/reports/assets/'
-    #     self.driver.save_screenshot(report_path + name)
-    #     extra.append(extras.png(report_path + name))
 
     @abstractmethod
     def validate_page_load(self):
