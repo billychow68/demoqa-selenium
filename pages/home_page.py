@@ -4,7 +4,6 @@ from pages.base_page import BasePage
 
 class HomePage(BasePage):
 
-    # todo: I don't think base_url belongs here in this class... perhaps in a config file?
     base_url = "http://demoqa.com"
     logo_loc = (By.XPATH, "//*/div[@id='app']/header/a")
     elements_loc = (By.XPATH, "//*/div[@class='card mt-4 top-card'][1]/div/div[@class='card-body']/h5")
