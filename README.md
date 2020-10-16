@@ -1,7 +1,7 @@
 # demoqa-selenium
 __Description__: Demonstrate test automation of [http://demoqa.com](http://demoqa.com) website using Python, PyTest and Selenium WebDriver.
 
-__Platform__(at this time): Darwin
+__Platform__ (at this time): Darwin
 
 __Supported Browser__ (at this time): Chrome version 86.0.4240.80
 
