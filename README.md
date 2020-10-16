@@ -3,32 +3,35 @@ __Description__: Demonstrate test automation of [http://demoqa.com](http://demoq
 
 __Platform__: Darwin
 
-#### Install Python
+__Supported Browser__ (at this time): Chrome version 86.0.4240.80
 
-Download and install [Python 3.9.0](https://www.python.org/downloads/release/python-390/) for Mac.
+## Prerequisite Software:
 
-#### Setup Virtual Environment
+1. Download and install [Python 3.9.0](https://www.python.org/downloads/release/python-390/) for Mac.
+1. Download [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and install to a directory in your system path (i.e., /usr/local/bin)
+
+## Setup:
+
+1. Setup Virtual Environment
 ```
 make setup
 ```
-
-#### Install Dependencies
+1. Install Dependencies
 ```
 make install
 ```
-
-#### Activate Your Virtual Environment
+1. Activate Your Virtual Environment
 ```
 demoqa
 ```
 You should see ```(.demoqa-selenium)``` in your command prompt.
 
-#### Default: Install Dependencies and Execute Tests
+## Execute the tests
 ```
 make
 ```
 
-#### Deactivate Your Virtual Environment
+## Deactivate Your Virtual Environment
 ```
 deactivate
 ```
