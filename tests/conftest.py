@@ -6,15 +6,15 @@ import sys
 import os
 import rootpath
 import shutil
+import json
 
 
 @pytest.fixture(scope="function")
 def driver(request):
-    """The fixture to create and destroy the webdriver"""
+    """Fixture to create and destroy the webdriver"""
     driver = webdriver.Chrome()
     # self.driver.implicitly_wait(10)
     driver.maximize_window()
-    # driver.get("http://demoqa.com")
 
     def close():
         # driver.delete_all_cookies()
@@ -31,6 +31,15 @@ def pytest_sessionstart(session):
 
 def pytest_sessionfinish(session, exitstatus):
     pass
+
+@pytest.fixture
+def json_loader():
+    """Loads data from JSON file"""
+    def _loader(filename):
+        with open(filename, 'r') as f:
+            data = json.load(f)
+        return data
+    return _loader
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):

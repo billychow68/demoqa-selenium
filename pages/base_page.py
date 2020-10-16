@@ -3,10 +3,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
 from datetime import datetime
-from os import getcwd
+import os
 from abc import abstractmethod
-from pytest_html import extras
-
+import time
 
 class BasePage:
     """Base class for page object model"""
@@ -16,8 +15,8 @@ class BasePage:
     def __init__(self, driver_):
         self.driver = driver_
 
-    def get_driver(self):
-        return self.driver
+    # def get_driver(self):
+    #     return self.driver
 
     def get_title(self):
         return self.driver.title
@@ -74,6 +73,7 @@ class BasePage:
         self.find_element(locator).send_keys(input_text)
 
     def is_displayed(self, locator, timeout=0):
+        """Explicit wait on element to be visible and enabled."""
         if timeout > 0:
             try:
                 wait = WebDriverWait(self.driver, timeout)
@@ -89,6 +89,7 @@ class BasePage:
                 return False
 
     def is_text_displayed(self, locator, text, timeout=0):
+        """Explicit wait on element's text to be present."""
         if timeout >= 0:
             try:
                 wait = WebDriverWait(self.driver, timeout)
@@ -97,6 +98,15 @@ class BasePage:
                 return False
             else:
                 return True
+
+    def is_file_exists(self, path, timeout=0):
+        """Wait on file to exist."""
+        for t in range(0, timeout):
+            if os.path.exists(path):
+                return True
+            else:
+                time.sleep(1)
+        return False
 
     def is_enabled(self, locator):
         return self.find_element(locator).is_enabled()
