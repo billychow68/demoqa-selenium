@@ -31,6 +31,10 @@ You should see ```(.demoqa-selenium)``` in your command prompt.
 make
 ```
 
+## View HTML Test Results Report
+```
+reports/reports.html
+```
 ## Deactivate Your Virtual Environment
 ```
 deactivate
