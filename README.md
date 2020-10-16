@@ -17,11 +17,11 @@ __Supported Browser__ (at this time): Chrome version 86.0.4240.80
 ```
 make setup
 ```
-1. Install Dependencies
+2. Install Dependencies
 ```
 make install
 ```
-1. Activate Your Virtual Environment
+3. Activate Your Virtual Environment
 ```
 demoqa
 ```
