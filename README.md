@@ -26,7 +26,7 @@ demoqa
 ```
 You should see ```(.demoqa-selenium)``` in your command prompt.
 
-## Execute the tests
+## Execute the Tests
 ```
 make
 ```
