@@ -8,7 +8,7 @@ __Supported Browser__ (at this time): Chrome version 86.0.4240.80
 ## Prerequisite Software:
 
 1. Download and install [Python 3.9.0](https://www.python.org/downloads/release/python-390/) for Mac.
-1. Download [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and install to a directory in your system path (i.e., /usr/local/bin)
+1. Download and install [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads) to a directory in your system path (i.e., /usr/local/bin)
 
 ## Setup:
 
