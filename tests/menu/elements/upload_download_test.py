@@ -1,6 +1,5 @@
 from pages.menu.elements.upload_download import ElementsUploadDownloadArea
 import pytest
-import time
 
 
 class TestUploadDownloadArea:

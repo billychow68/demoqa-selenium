@@ -2,7 +2,6 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
-from datetime import datetime
 import os
 from abc import abstractmethod
 import time
@@ -14,9 +13,6 @@ class BasePage:
 
     def __init__(self, driver_):
         self.driver = driver_
-
-    # def get_driver(self):
-    #     return self.driver
 
     def get_title(self):
         return self.driver.title
@@ -98,6 +94,8 @@ class BasePage:
                 return False
             else:
                 return True
+        else:
+            return False
 
     def is_file_exists(self, path, timeout=0):
         """Wait on file to exist."""
