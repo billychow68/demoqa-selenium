@@ -34,7 +34,7 @@ make
 
 ## View the HTML Test Results Report
 ```
-reports/reports.html
+reports/report.html
 ```
 ## Deactivate Your Virtual Environment
 ```
