@@ -117,6 +117,19 @@ class BasePage:
                 time.sleep(1)
         return False
 
+    def is_alert_present(self, timeout=0):
+        """Explicit wait on an alert."""
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.alert_is_present())
+            except TimeoutException:
+                return False
+            else:
+                return True
+        else:
+            return False
+
     def is_enabled(self, locator):
         return self.find_element(locator).is_enabled()
 
@@ -125,6 +138,18 @@ class BasePage:
 
     def scroll_to_bottom_of_page(self):
         self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+
+    def accept_alert(self):
+        self.driver.switch_to.alert.accept()
+
+    def dismiss_alert(self):
+        self.driver.switch_to.alert.dismiss()
+
+    def get_alert_text(self):
+        return self.driver.switch_to.alert.text
+
+    def alert_send_keys(self, text):
+        self.driver.switch_to.alert.send_keys(text)
 
     @abstractmethod
     def validate_page_load(self):

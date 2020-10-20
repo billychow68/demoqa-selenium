@@ -26,19 +26,19 @@ class ElementsUploadDownloadArea(BasePage):
         self.driver.get(self.upload_download_url)
 
     def validate_page_load(self):
-        return self.is_displayed(self.download_button_loc, 30) and \
-            self.is_displayed(self.upload_button_loc, 30)
+        return self.is_displayed(self.download_button_loc, 15) and \
+            self.is_displayed(self.upload_button_loc, 15)
 
     def select_download(self, json_loader):
         self._delete_sample_file(json_loader)
-        if self.is_displayed(self.download_button_loc, 30):
+        if self.is_displayed(self.download_button_loc, 15):
             self.find_element(self.download_button_loc).click()
 
     def validate_download(self, json_loader):
         path = os.path.join(rootpath.detect(), "tests", "menu", "elements", "config.json")
         config = json_loader(path)
         full_path = os.path.join(config["path"], config["file"])
-        if self.is_file_exists(full_path, 30):
+        if self.is_file_exists(full_path, 15):
             self._delete_sample_file(json_loader)
             return True
         else:
@@ -49,7 +49,7 @@ class ElementsUploadDownloadArea(BasePage):
         self.find_element(self.upload_button_loc).send_keys(full_path)
 
     def validate_upload(self):
-        return self.is_text_displayed(self.upload_file_path_loc, "C:\\fakepath\sampleFile.jpeg", 30)
+        return self.is_text_displayed(self.upload_file_path_loc, "C:\\fakepath\sampleFile.jpeg", 15)
 
 
 

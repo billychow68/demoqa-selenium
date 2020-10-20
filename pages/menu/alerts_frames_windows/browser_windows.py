@@ -17,9 +17,9 @@ class ElementsBrowserWindowsArea(BasePage):
         self.driver.get(self.brw_wdw_url)
 
     def validate_page_load(self):
-        return (self.is_displayed(self.tab_btn_loc, 30)) and \
-               (self.is_displayed(self.wdw_btn_loc, 30)) and \
-               (self.is_displayed(self.msg_wdw_btn_loc, 30))
+        return (self.is_displayed(self.tab_btn_loc, 15)) and \
+               (self.is_displayed(self.wdw_btn_loc, 15)) and \
+               (self.is_displayed(self.msg_wdw_btn_loc, 15))
 
     def select_tab_button(self):
         self.click(self.tab_btn_loc)
