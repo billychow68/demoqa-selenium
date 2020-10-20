@@ -36,14 +36,24 @@ class BasePage:
         self._update_window_handles()
 
     def get_number_of_handles(self):
+        # todo: may want to refactor this to return self._update_window_handles().size() instead
         self._update_window_handles()
         return len(self._handles)
 
     def _update_window_handles(self):
-        """Update the private _handles class variable with all the window (tabs) handles."""
+        """
+        Update the private _handles class variable with all window (tabs) handles.
+        """
         self._handles = self.driver.window_handles
 
     def switch_to_window_handle(self, index):
+        """
+        Method for switching to a any window handle (zero-based).
+
+        Example of switching to the newest window handle:
+            index = self.get_number_of_handles()
+            self.switch_to_window_handle(index-1)
+        """
         self.driver.switch_to.window(self._handles[index])
 
     def find_element(self, locator):
@@ -98,8 +108,9 @@ class BasePage:
             return False
 
     def is_file_exists(self, path, timeout=0):
-        """Wait on file to exist."""
+        """Poor man's wait on file to exist."""
         for t in range(0, timeout):
+            # todo: exists or isfile?
             if os.path.exists(path):
                 return True
             else:
