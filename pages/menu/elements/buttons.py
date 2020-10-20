@@ -5,14 +5,13 @@ import time
 
 class ElementsButtonsArea(BasePage):
 
-    def __init__(self, driver):
-        super(ElementsButtonsArea, self).__init__(driver)
-
     buttons_url = "http://demoqa.com/buttons"
     doubleclick_loc = (By.ID, "doubleClickBtn")
     rightclick_loc = (By.ID, 'rightClickBtn')
-    # clickme_loc = (By.ID, 'Ij1FH')
     clickme_loc = (By.CSS_SELECTOR, '#Ij1FH')
+
+    def __init__(self, driver):
+        super(ElementsButtonsArea, self).__init__(driver)
 
     def open_buttons_page(self):
         self.driver.get(self.buttons_url)

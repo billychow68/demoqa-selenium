@@ -12,7 +12,9 @@ import json
 @pytest.fixture(scope="function")
 def driver(request):
     """Fixture to create and destroy the webdriver"""
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
+    driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", \
+                              service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
     # self.driver.implicitly_wait(10)
     driver.maximize_window()
 
