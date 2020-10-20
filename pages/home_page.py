@@ -19,23 +19,23 @@ class HomePage(BasePage):
         self.open_url(self.base_url)
 
     def select_elements_option(self):
-        if self.is_displayed(self.elements_loc, 30):
+        if self.is_displayed(self.elements_loc, 15):
             self.find_element(self.elements_loc).click()
 
     def select_forms_option(self):
-        if self.is_displayed(self.forms_loc, 30):
+        if self.is_displayed(self.forms_loc, 15):
             self.find_element(self.forms_loc).click()
 
     def select_alert_frames_windows_option(self):
-        if self.is_displayed(self.alerts_frames_windows_loc, 30):
+        if self.is_displayed(self.alerts_frames_windows_loc, 15):
             self.find_element(self.alerts_frames_windows_loc).click()
 
     def select_widgets_option(self):
-        if self.is_displayed(self.widgets_loc, 30):
+        if self.is_displayed(self.widgets_loc, 15):
             self.find_element(self.widgets_loc).click()
 
     def select_interactions_option(self):
-        if self.is_displayed(self.interactions_loc, 30):
+        if self.is_displayed(self.interactions_loc, 15):
             self.find_element(self.interactions_loc).click()
 
     def validate_page_load(self):

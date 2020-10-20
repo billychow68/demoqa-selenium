@@ -23,21 +23,21 @@ class ElementsRadioButtonArea(BasePage):
 
     def validate_page_load(self):
         # todo: investigate why yes_loc, impressive_loc and no_loc aren't locatable
-        # if self.is_displayed(self.yes_loc, 30):
-        if self.is_displayed(self.question_loc, 30) and \
-           self.is_displayed(self.yes_label_loc, 30) and \
-           self.is_displayed(self.impressive_label_loc, 30) and \
-           self.is_displayed(self.no_label_loc, 30):
+        # if self.is_displayed(self.yes_loc, 15):
+        if self.is_displayed(self.question_loc, 15) and \
+           self.is_displayed(self.yes_label_loc, 15) and \
+           self.is_displayed(self.impressive_label_loc, 15) and \
+           self.is_displayed(self.no_label_loc, 15):
             return True
         else:
             return False
 
     def select_yes(self):
-        if self.is_displayed(self.yes_label_loc, 30):
+        if self.is_displayed(self.yes_label_loc, 15):
             self.click(self.yes_label_loc)
 
     def select_impressive(self):
-        if self.is_displayed(self.impressive_label_loc, 30):
+        if self.is_displayed(self.impressive_label_loc, 15):
             self.click(self.impressive_label_loc)
 
     def validate_select_yes_success(self):

@@ -17,8 +17,8 @@ class ElementsButtonsArea(BasePage):
         self.driver.get(self.buttons_url)
 
     def validate_page_load(self):
-        if self.is_displayed(self.doubleclick_loc, 5) and \
-           self.is_displayed(self.rightclick_loc, 5):
+        if self.is_displayed(self.doubleclick_loc, 15) and \
+           self.is_displayed(self.rightclick_loc, 15):
             # if self.is_displayed(self.clickme_loc, 5):
             return True
         else:

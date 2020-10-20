@@ -36,8 +36,8 @@ class ElementsCheckBoxArea(BasePage):
         self.open_url(self.checkbox_url)
 
     def validate_page_load(self):
-        if self.is_displayed(self.home_toggle_loc, 2) and \
-           self.is_displayed(self.home_checkbox_loc, 2):
+        if self.is_displayed(self.home_toggle_loc, 15) and \
+           self.is_displayed(self.home_checkbox_loc, 15):
             return True
         else:
             return False
