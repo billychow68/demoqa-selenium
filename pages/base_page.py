@@ -151,6 +151,16 @@ class BasePage:
     def alert_send_keys(self, text):
         self.driver.switch_to.alert.send_keys(text)
 
+    def close_modal_dialog(self, locator):
+        """This method will click on the Close or X button on the modal dialog"""
+        if self.is_displayed(locator):
+            self.click(locator)
+
+    def get_modal_dialog_text(self, locator):
+        if self.is_displayed(locator):
+            return self.find_element(locator).text
+        return None
+
     @abstractmethod
     def validate_page_load(self):
         pass
