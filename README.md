@@ -1,5 +1,5 @@
 # demoqa-selenium
-__Description__: Demonstrate UI automation of [http://demoqa.com](http://demoqa.com) website using Python, PyTest and Selenium WebDriver.
+__Description__: Demonstrate UI test automation of [http://demoqa.com](http://demoqa.com) website using Python, PyTest and Selenium WebDriver.
 
 __Platform__ (at this time): Darwin
 
