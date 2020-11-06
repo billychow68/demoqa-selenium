@@ -40,3 +40,5 @@ reports/report.html
 ```
 deactivate
 ```
+## Demo
+[demo.mov](https://github.com/billychow68/demoqa-selenium/blob/main/demo/demo.mov)
