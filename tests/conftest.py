@@ -11,10 +11,34 @@ import json
 
 @pytest.fixture(scope="function")
 def driver(request):
+    browser = "Firefox"
+    # browser = "Chrome"
+
+    if browser == "Chrome":
+        driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver",
+                                  service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
+    elif browser == "Firefox":
+        profile = webdriver.FirefoxProfile()
+        # set download location and enable it
+        profile.set_preference("browser.download.dir", "/Users/billy/Downloads")
+        profile.set_preference("browser.download.folderList", 2)
+        # disable system download window using MIME types
+        profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "image/jpeg")
+        profile.set_preference("browser.download.manager.showWhenStarting", False)
+        profile.set_preference("pdfjs.disabled", True)
+        # create webdriver instance
+        driver = webdriver.Firefox(firefox_profile=profile,
+                                   executable_path="/Users/billy/training/pycharm-projects/demoqa-selenium/vendor/geckodriver")
+    else:
+        pass
+
     """Fixture to create and destroy the webdriver"""
     # driver = webdriver.Chrome()
-    driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", \
-                              service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
+    # driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", \
+    #                           service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
+    # executable_path = os.path.join(os.getcwd(), '../vendor', 'geckodriver')
+    # driver = webdriver.Firefox(executable_path="/Users/billy/training/pycharm-projects/demoqa-selenium/vendor/geckodriver")
+    # driver = webdriver.Firefox(executable_path="./vendor/geckodriver")
     # self.driver.implicitly_wait(10)
     driver.maximize_window()
 
