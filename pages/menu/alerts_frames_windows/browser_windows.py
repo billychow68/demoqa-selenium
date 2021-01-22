@@ -5,6 +5,7 @@ from pages.base_page import BasePage
 class ElementsBrowserWindowsArea(BasePage):
 
     brw_wdw_url = "https://demoqa.com/browser-windows"
+    sample_url = "https://demoqa.com/sample"
     tab_btn_loc = (By.CSS_SELECTOR, "#tabButton")
     wdw_btn_loc = (By.CSS_SELECTOR, "#windowButton")
     msg_wdw_btn_loc = (By.CSS_SELECTOR, "#messageWindowButton")
@@ -27,6 +28,7 @@ class ElementsBrowserWindowsArea(BasePage):
         self.switch_to_window_handle(index-1)
 
     def validate_tab_button(self):
+        self.url_to_be(self.sample_url, 15)
         return ("https://demoqa.com/sample" == self.get_url()) and \
                ("This is a sample page" in self.driver.page_source)
 

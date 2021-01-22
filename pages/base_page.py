@@ -130,6 +130,46 @@ class BasePage:
         else:
             return False
 
+    def title_is(self, title, timeout=0):
+        """Explicit wait on the exact title to be present."""
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.title_is(title=title))
+            except TimeoutException:
+                return False
+            else:
+                return True
+        else:
+            return False
+
+    def url_to_be(self, url, timeout=0):
+        """Explicit wait on the exact URL to be present."""
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.url_to_be(url=url))
+            except TimeoutException:
+                return False
+            else:
+                return True
+        else:
+            return False
+
+    def number_of_windows_to_be(self, handles, timeout=0):
+        """Explicit wait on the number of window handles to be a certain value."""
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.number_of_windows_to_be(handles))
+            except TimeoutException:
+                return False
+            else:
+                return True
+        else:
+            return False
+
+
     def is_enabled(self, locator):
         return self.find_element(locator).is_enabled()
 
