@@ -32,7 +32,7 @@ class ElementsLinksArea(BasePage):
             self.find_element(self.home_loc).click()
             # Firefox webdriver bug: webdriver fails to return 2 windows handles consistently
             # Fix: use explicit wait on windows handles to be 2
-            self.number_of_windows_to_be(2, 15)
+            self.number_of_windows_to_be(handles=2, timeout=15)
             index = self.get_number_of_handles()
             self.switch_to_window_handle(index-1)
 
@@ -49,7 +49,7 @@ class ElementsLinksArea(BasePage):
             self.find_element(self.homenouoh_loc).click()
             # Firefox webdriver bug: webdriver fails to return 2 windows handles consistently
             # Fix: use explicit wait on windows handles to be 2
-            self.number_of_windows_to_be(2, 15)
+            self.number_of_windows_to_be(handles=2, timeout=15)
             index = self.get_number_of_handles()
             self.switch_to_window_handle(index-1)
 

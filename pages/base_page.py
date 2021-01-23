@@ -156,7 +156,7 @@ class BasePage:
         else:
             return False
 
-    def number_of_windows_to_be(self, handles, timeout=0):
+    def number_of_windows_to_be(self, *, handles: int, timeout=0):
         """Explicit wait on the number of window handles to be a certain value."""
         if timeout >= 0:
             try:
