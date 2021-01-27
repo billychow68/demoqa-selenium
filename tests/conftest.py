@@ -1,20 +1,49 @@
 from selenium import webdriver
-from pages.home_page import HomePage
 import pytest
 from datetime import datetime
-import sys
 import os
 import rootpath
 import shutil
 import json
+import sys
+from . import config
 
+def pytest_addoption(parser):
+    """Pytest function to get command-line arguments."""
+    parser.addoption("--baseurl", action="store", default="https://demoqa.com",
+                     help="base URL for the application under test.")
+    parser.addoption("--browser", action="store", default="chrome",
+                     help="the browser to launch for testing.")
 
 @pytest.fixture(scope="function")
 def driver(request):
     """Fixture to create and destroy the webdriver"""
-    # driver = webdriver.Chrome()
-    driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", \
-                              service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
+
+    # Store command-line arguments or defaults in the global variables in memory (not config.py)
+    config.baseurl = request.config.getoption("--baseurl").lower()
+    config.browser = request.config.getoption("--browser").lower()
+
+    if config.browser == "chrome":
+        executable_path = os.path.join(rootpath.detect(), "vendor", "chromedriver")
+        driver = webdriver.Chrome(executable_path=executable_path,
+                                  service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
+    elif config.browser == "firefox":
+        profile = webdriver.FirefoxProfile()
+        # set download location and enable it
+        profile.set_preference("browser.download.dir", "/Users/billy/Downloads")
+        profile.set_preference("browser.download.folderList", 2)
+        # disable system download window using MIME types
+        profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "image/jpeg")
+        profile.set_preference("browser.download.manager.showWhenStarting", False)
+        profile.set_preference("pdfjs.disabled", True)
+        # create webdriver instance
+        executable_path = os.path.join(rootpath.detect(), "vendor", "geckodriver")
+        driver = webdriver.Firefox(firefox_profile=profile,
+                                   executable_path=executable_path)
+    else:
+        # Invalid --browser argument
+        sys.exit(1)
+
     # self.driver.implicitly_wait(10)
     driver.maximize_window()
 
@@ -45,7 +74,7 @@ def json_loader():
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    """This hook will create a HTML report"""
+    """This Pytest hook will create a HTML report"""
     pytest_html = item.config.pluginmanager.getplugin('html')
     outcome = yield
     report = outcome.get_result()

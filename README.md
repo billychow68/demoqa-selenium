@@ -3,13 +3,17 @@ __Description__: Demonstrate UI test automation of [http://demoqa.com](http://de
 
 __Platform__ (at this time): Darwin
 
-__Supported Browser__ (at this time): Chrome version 86.0.4240.80
+__Supported Browsers__ (at this time):
+
+1. Chrome version 87.0.4280.67
+1. Firefox version 84.0.2
 
 ## Prerequisite Software
 
 1. Download and install [Python 3.9.0](https://www.python.org/downloads/release/python-390/) for Mac.
-1. Download and install [Chrome browser](https://www.google.com/chrome)
-1. Download and install [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads) to a directory in your system path (i.e., /usr/local/bin)
+1. Download and install [Chrome browser](https://www.google.com/chrome), [Firefox browser](https://www.mozilla.org/en-US/firefox/)
+1. Download and install to vendor/ directory [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads), [Firefox driver](https://github.com/mozilla/geckodriver/releases)
+1. macOS notarization [for geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Notarization.html)
 
 ## Setup
 

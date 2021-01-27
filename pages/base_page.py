@@ -1,10 +1,11 @@
+import os
+import time
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
-import os
 from abc import abstractmethod
-import time
+from tests import config
 
 class BasePage:
     """Base class for page object model"""
@@ -20,8 +21,9 @@ class BasePage:
     def get_url(self):
         return self.driver.current_url
 
-    def open_url(self, url):
-        self.driver.get(url)
+    def open_url(self, path):
+        """Open URL using baseurl and path"""
+        self.driver.get(config.baseurl + path)
         self._update_window_handles()
 
     def open_url_in_new_window(self, url):
@@ -129,6 +131,46 @@ class BasePage:
                 return True
         else:
             return False
+
+    def title_is(self, title, timeout=0):
+        """Explicit wait on the exact title to be present."""
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.title_is(title=title))
+            except TimeoutException:
+                return False
+            else:
+                return True
+        else:
+            return False
+
+    def url_to_be(self, url, timeout=0):
+        """Explicit wait on the exact URL to be present."""
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.url_to_be(url=url))
+            except TimeoutException:
+                return False
+            else:
+                return True
+        else:
+            return False
+
+    def number_of_windows_to_be(self, *, handles: int, timeout=0):
+        """Explicit wait on the number of window handles to be a certain value."""
+        if timeout >= 0:
+            try:
+                wait = WebDriverWait(self.driver, timeout)
+                wait.until(ec.number_of_windows_to_be(handles))
+            except TimeoutException:
+                return False
+            else:
+                return True
+        else:
+            return False
+
 
     def is_enabled(self, locator):
         return self.find_element(locator).is_enabled()
