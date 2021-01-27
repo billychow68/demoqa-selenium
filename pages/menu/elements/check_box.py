@@ -2,13 +2,14 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 import pytest
 import time
+from tests import config
 
 
 class ElementsCheckBoxArea(BasePage):
     def __init__(self, driver):
         super(ElementsCheckBoxArea, self).__init__(driver)
 
-    checkbox_url = "https://demoqa.com/checkbox"
+    checkbox_path = "/checkbox"
     plus_toggle_loc = (By.XPATH, '//*/div[@class="check-box-tree-wrapper"]/div/div/button[1]')
     minus_toggle_loc = (By.XPATH, '//*/div[@class="check-box-tree-wrapper"]/div/div/button[2]')
     home_toggle_loc = (By.XPATH, '//*/div[@class="check-box-tree-wrapper"]/div/ol/li/span/button')
@@ -33,11 +34,11 @@ class ElementsCheckBoxArea(BasePage):
     excelfile_text_success = "excelFile"
 
     def open_checkbox_page(self):
-        self.open_url(self.checkbox_url)
+        self.open_url(self.checkbox_path)
 
     def validate_page_load(self):
-        if self.is_displayed(self.home_toggle_loc, 15) and \
-           self.is_displayed(self.home_checkbox_loc, 15):
+        if self.is_displayed(self.home_toggle_loc, timeout=15) and \
+           self.is_displayed(self.home_checkbox_loc, timeout=15):
             return True
         else:
             return False

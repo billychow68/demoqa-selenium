@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from tests import config
 
 
 class ElementsModalDialogsArea(BasePage):
 
-    modals_url = "https://demoqa.com/modal-dialogs"
+    modals_path = "/modal-dialogs"
     small_modal_loc = (By.CSS_SELECTOR, '#showSmallModal')
     small_modal_close_loc = (By.CSS_SELECTOR, '#closeSmallModal')
     small_modal_x_close_loc = (By.CSS_SELECTOR, '.close')
@@ -19,14 +20,14 @@ class ElementsModalDialogsArea(BasePage):
         super(ElementsModalDialogsArea, self).__init__(driver)
 
     def open_modals_page(self):
-        self.driver.get(self.modals_url)
+        self.driver.get(config.baseurl + self.modals_path)
 
     def validate_page_load(self):
-        return (self.is_displayed(self.small_modal_loc, 15)) and \
-               (self.is_displayed(self.large_modal_loc, 15))
+        return (self.is_displayed(self.small_modal_loc, timeout=15)) and \
+               (self.is_displayed(self.large_modal_loc, timeout=15))
 
     def select_small_modal(self):
-        if self.is_displayed(self.small_modal_loc, 15):
+        if self.is_displayed(self.small_modal_loc, timeout=15):
             self.click(self.small_modal_loc)
 
     def close_small_modal_dialog(self):
@@ -42,7 +43,7 @@ class ElementsModalDialogsArea(BasePage):
         return False
 
     def select_large_modal(self):
-        if self.is_displayed(self.large_modal_loc, 15):
+        if self.is_displayed(self.large_modal_loc, timeout=15):
             self.click(self.large_modal_loc)
 
     def close_large_modal_dialog(self):
