@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from tests import config
 
 
 class ElementsAlertsArea(BasePage):
 
-    alerts_url = "https://demoqa.com/alerts"
+    alerts_path = "/alerts"
     alert_button_loc = (By.ID, 'alertButton')
     timer_alert_button_loc = (By.ID, 'timerAlertButton')
     confirm_button_loc = (By.ID, 'confirmButton')
@@ -14,16 +15,16 @@ class ElementsAlertsArea(BasePage):
         super(ElementsAlertsArea, self).__init__(driver)
 
     def open_alerts_page(self):
-        self.driver.get(self.alerts_url)
+        self.driver.get(config.baseurl + self.alerts_path)
 
     def validate_page_load(self):
-        return (self.is_displayed(self.alert_button_loc, 15)) and \
-               (self.is_displayed(self.timer_alert_button_loc, 15)) and \
-               (self.is_displayed(self.confirm_button_loc, 15)) and \
-               (self.is_displayed(self.prompt_button_loc, 15))
+        return (self.is_displayed(self.alert_button_loc, timeout=15)) and \
+               (self.is_displayed(self.timer_alert_button_loc, timeout=15)) and \
+               (self.is_displayed(self.confirm_button_loc, timeout=15)) and \
+               (self.is_displayed(self.prompt_button_loc, timeout=15))
 
     def select_alerts_button(self):
-        if self.is_displayed(self.alert_button_loc, 15):
+        if self.is_displayed(self.alert_button_loc, timeout=15):
             self.click(self.alert_button_loc)
 
     def validate_alerts_button_text(self):
@@ -38,21 +39,21 @@ class ElementsAlertsArea(BasePage):
         return False
 
     def select_timer_alerts_button(self):
-        if self.is_displayed(self.timer_alert_button_loc, 15):
+        if self.is_displayed(self.timer_alert_button_loc, timeout=15):
             self.click(self.timer_alert_button_loc)
 
     def validate_timer_alerts_button_text(self):
-        if self.is_alert_present(15) and \
+        if self.is_alert_present(timeout=15) and \
            'This alert appeared after 5 seconds' == self.get_alert_text():
                 return True
         return False
     
     def select_confirm_button(self):
-        if self.is_displayed(self.confirm_button_loc, 15):
+        if self.is_displayed(self.confirm_button_loc, timeout=15):
             self.click(self.confirm_button_loc)
 
     def validate_confirm_button_text(self):
-        if self.is_alert_present(15) and \
+        if self.is_alert_present(timeout=15) and \
            'Do you confirm action?' == self.get_alert_text():
                 return True
         return False
@@ -68,7 +69,7 @@ class ElementsAlertsArea(BasePage):
         return False
 
     def select_prompt_button(self):
-        if self.is_displayed(self.prompt_button_loc, 15):
+        if self.is_displayed(self.prompt_button_loc, timeout=15):
             self.click(self.prompt_button_loc)
 
     def validate_prompt_button_text(self):

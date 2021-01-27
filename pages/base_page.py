@@ -1,10 +1,11 @@
+import os
+import time
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
-import os
 from abc import abstractmethod
-import time
+from tests import config
 
 class BasePage:
     """Base class for page object model"""
@@ -20,8 +21,9 @@ class BasePage:
     def get_url(self):
         return self.driver.current_url
 
-    def open_url(self, url):
-        self.driver.get(url)
+    def open_url(self, path):
+        """Open URL using baseurl and path"""
+        self.driver.get(config.baseurl + path)
         self._update_window_handles()
 
     def open_url_in_new_window(self, url):

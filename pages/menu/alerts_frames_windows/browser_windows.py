@@ -1,11 +1,12 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
+from tests import config
 
 
 class ElementsBrowserWindowsArea(BasePage):
 
-    brw_wdw_url = "https://demoqa.com/browser-windows"
-    sample_url = "https://demoqa.com/sample"
+    brw_wdw_path = "/browser-windows"
+    sample_path = "/sample"
     tab_btn_loc = (By.CSS_SELECTOR, "#tabButton")
     wdw_btn_loc = (By.CSS_SELECTOR, "#windowButton")
     msg_wdw_btn_loc = (By.CSS_SELECTOR, "#messageWindowButton")
@@ -15,12 +16,12 @@ class ElementsBrowserWindowsArea(BasePage):
         super(ElementsBrowserWindowsArea, self).__init__(driver)
 
     def open_browser_window_page(self):
-        self.driver.get(self.brw_wdw_url)
+        self.driver.get(config.baseurl + self.brw_wdw_path)
 
     def validate_page_load(self):
-        return (self.is_displayed(self.tab_btn_loc, 15)) and \
-               (self.is_displayed(self.wdw_btn_loc, 15)) and \
-               (self.is_displayed(self.msg_wdw_btn_loc, 15))
+        return (self.is_displayed(self.tab_btn_loc, timeout=15)) and \
+               (self.is_displayed(self.wdw_btn_loc, timeout=15)) and \
+               (self.is_displayed(self.msg_wdw_btn_loc, timeout=15))
 
     def select_tab_button(self):
         self.click(self.tab_btn_loc)
@@ -28,7 +29,7 @@ class ElementsBrowserWindowsArea(BasePage):
         self.switch_to_window_handle(index-1)
 
     def validate_tab_button(self):
-        self.url_to_be(self.sample_url, 15)
+        self.url_to_be(config.baseurl + self.sample_path, timeout=15)
         return ("https://demoqa.com/sample" == self.get_url()) and \
                ("This is a sample page" in self.driver.page_source)
 

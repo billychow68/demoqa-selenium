@@ -3,7 +3,10 @@ __Description__: Demonstrate UI test automation of [http://demoqa.com](http://de
 
 __Platform__ (at this time): Darwin
 
-__Supported Browsers__ (at this time): Chrome version 87.0.4280.67, Firefox version 84.0.2
+__Supported Browsers__ (at this time):
+
+1. Chrome version 87.0.4280.67
+1. Firefox version 84.0.2
 
 ## Prerequisite Software
 

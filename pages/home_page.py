@@ -1,10 +1,11 @@
+import os
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 
 
 class HomePage(BasePage):
 
-    base_url = "http://demoqa.com"
+    homepage_path = "/"
     logo_loc = (By.XPATH, "//*/div[@id='app']/header/a")
     elements_loc = (By.XPATH, "//*/div[@class='card mt-4 top-card'][1]/div/div[@class='card-body']/h5")
     forms_loc = (By.XPATH, "//*/div[@class='card mt-4 top-card'][2]/div/div[@class='card-body']/h5")
@@ -16,26 +17,26 @@ class HomePage(BasePage):
         super(HomePage, self).__init__(driver)
 
     def open_home_page(self):
-        self.open_url(self.base_url)
+        self.open_url(self.homepage_path)
 
     def select_elements_option(self):
-        if self.is_displayed(self.elements_loc, 15):
+        if self.is_displayed(self.elements_loc, timeout=15):
             self.find_element(self.elements_loc).click()
 
     def select_forms_option(self):
-        if self.is_displayed(self.forms_loc, 15):
+        if self.is_displayed(self.forms_loc, timeout=15):
             self.find_element(self.forms_loc).click()
 
     def select_alert_frames_windows_option(self):
-        if self.is_displayed(self.alerts_frames_windows_loc, 15):
+        if self.is_displayed(self.alerts_frames_windows_loc, timeout=15):
             self.find_element(self.alerts_frames_windows_loc).click()
 
     def select_widgets_option(self):
-        if self.is_displayed(self.widgets_loc, 15):
+        if self.is_displayed(self.widgets_loc, timeout=15):
             self.find_element(self.widgets_loc).click()
 
     def select_interactions_option(self):
-        if self.is_displayed(self.interactions_loc, 15):
+        if self.is_displayed(self.interactions_loc, timeout=15):
             self.find_element(self.interactions_loc).click()
 
     def validate_page_load(self):

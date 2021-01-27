@@ -8,7 +8,7 @@ class FormsPracticeFormArea(BasePage):
     def __init__(self, driver):
         super(FormsPracticeFormArea, self).__init__(driver)
 
-    practice_form_url = "https://demoqa.com/automation-practice-form"
+    practice_form_path = "/automation-practice-form"
     name_label_loc = (By.ID, 'userName-label')
     name_fname_loc = (By.CSS_SELECTOR, '#firstName')
     name_lname_loc = (By.CSS_SELECTOR, '#lastName')
@@ -39,37 +39,37 @@ class FormsPracticeFormArea(BasePage):
     submit_loc = (By.ID, "submit")
 
     def open_practice_form_url(self):
-        self.driver.get(self.practice_form_url)
+        self.open_url(self.practice_form_path)
 
     def validate_page_load(self):
-        if self.is_displayed(self.name_label_loc, 10) and \
-           self.is_displayed(self.name_fname_loc, 10) and \
-           self.is_displayed(self.name_lname_loc, 10) and \
-           self.is_displayed(self.email_label_loc, 10) and \
-           self.is_displayed(self.email_loc, 10) and \
-           self.is_displayed(self.gender_label_loc, 10) and \
-           self.is_displayed(self.gender_male_loc, 10) and \
-           self.is_displayed(self.gender_female_loc, 10) and \
-           self.is_displayed(self.gender_other_loc, 10) and \
-           self.is_displayed(self.mobile_number_label_loc, 10) and \
-           self.is_displayed(self.mobile_number_loc, 10) and \
-           self.is_displayed(self.dob_label_loc, 10) and \
-           self.is_displayed(self.dob_loc, 10) and \
-           self.is_displayed(self.subjects_label_loc, 10) and \
-           self.is_displayed(self.subject_loc, 10) and \
-           self.is_displayed(self.hobbies_label_loc, 10) and \
-           self.is_displayed(self.hobbies_sports_loc, 10) and \
-           self.is_displayed(self.hobbies_reading_loc, 10) and \
-           self.is_displayed(self.hobbies_music_loc, 10) and \
-           self.is_displayed(self.picture_label_loc, 10) and \
-           self.is_displayed(self.select_picture_label_loc, 10) and \
-           self.is_displayed(self.choose_file_loc, 10) and \
-           self.is_displayed(self.current_address_label_loc, 10) and \
-           self.is_displayed(self.current_address_loc, 10) and \
-           self.is_displayed(self.state_city_label_loc, 10) and \
-           self.is_displayed(self.state_loc, 10) and \
-           self.is_displayed(self.city_loc, 10) and \
-           self.is_displayed(self.submit_loc, 10):
+        if self.is_displayed(self.name_label_loc, timeout=15) and \
+           self.is_displayed(self.name_fname_loc, timeout=15) and \
+           self.is_displayed(self.name_lname_loc, timeout=15) and \
+           self.is_displayed(self.email_label_loc, timeout=15) and \
+           self.is_displayed(self.email_loc, timeout=15) and \
+           self.is_displayed(self.gender_label_loc, timeout=15) and \
+           self.is_displayed(self.gender_male_loc, timeout=15) and \
+           self.is_displayed(self.gender_female_loc, timeout=15) and \
+           self.is_displayed(self.gender_other_loc, timeout=15) and \
+           self.is_displayed(self.mobile_number_label_loc, timeout=15) and \
+           self.is_displayed(self.mobile_number_loc, timeout=15) and \
+           self.is_displayed(self.dob_label_loc, timeout=15) and \
+           self.is_displayed(self.dob_loc, timeout=15) and \
+           self.is_displayed(self.subjects_label_loc, timeout=15) and \
+           self.is_displayed(self.subject_loc, timeout=15) and \
+           self.is_displayed(self.hobbies_label_loc, timeout=15) and \
+           self.is_displayed(self.hobbies_sports_loc, timeout=15) and \
+           self.is_displayed(self.hobbies_reading_loc, timeout=15) and \
+           self.is_displayed(self.hobbies_music_loc, timeout=15) and \
+           self.is_displayed(self.picture_label_loc, timeout=15) and \
+           self.is_displayed(self.select_picture_label_loc, timeout=15) and \
+           self.is_displayed(self.choose_file_loc, timeout=15) and \
+           self.is_displayed(self.current_address_label_loc, timeout=15) and \
+           self.is_displayed(self.current_address_loc, timeout=15) and \
+           self.is_displayed(self.state_city_label_loc, timeout=15) and \
+           self.is_displayed(self.state_loc, timeout=15) and \
+           self.is_displayed(self.city_loc, timeout=15) and \
+           self.is_displayed(self.submit_loc, timeout=15):
             return True
         else:
             return False
