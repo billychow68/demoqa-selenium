@@ -24,13 +24,10 @@ class ElementsRadioButtonArea(BasePage):
     def validate_page_load(self):
         # todo: investigate why yes_loc, impressive_loc and no_loc aren't locatable
         # if self.is_displayed(self.yes_loc, timeout=15):
-        if self.is_displayed(self.question_loc, timeout=15) and \
+        assert self.is_displayed(self.question_loc, timeout=15) and \
            self.is_displayed(self.yes_label_loc, timeout=15) and \
            self.is_displayed(self.impressive_label_loc, timeout=15) and \
-           self.is_displayed(self.no_label_loc, timeout=15):
-            return True
-        else:
-            return False
+           self.is_displayed(self.no_label_loc, timeout=15)
 
     def select_yes(self):
         if self.is_displayed(self.yes_label_loc, timeout=15):
@@ -41,23 +38,14 @@ class ElementsRadioButtonArea(BasePage):
             self.click(self.impressive_label_loc)
 
     def validate_select_yes_success(self):
-        if self.confirmation_text in self.driver.page_source and \
+        assert self.confirmation_text in self.driver.page_source and \
            "Yes" in self.driver.page_source and \
-           self.is_selected(self.yes_loc):
-            return True
-        else:
-            return False
+           self.is_selected(self.yes_loc)
 
     def validate_select_impressive_success(self):
-        if self.confirmation_text in self.driver.page_source and \
+        assert self.confirmation_text in self.driver.page_source and \
            "Impressive" in self.driver.page_source and \
-           self.is_selected(self.impressive_loc):
-            return True
-        else:
-            return False
+           self.is_selected(self.impressive_loc)
 
     def validate_no_is_disabled(self):
-        if self.is_enabled(self.no_loc):
-            return True
-        else:
-            return False
+        assert not self.is_enabled(self.no_loc)

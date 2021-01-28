@@ -42,7 +42,7 @@ class FormsPracticeFormArea(BasePage):
         self.open_url(self.practice_form_path)
 
     def validate_page_load(self):
-        if self.is_displayed(self.name_label_loc, timeout=15) and \
+        assert self.is_displayed(self.name_label_loc, timeout=15) and \
            self.is_displayed(self.name_fname_loc, timeout=15) and \
            self.is_displayed(self.name_lname_loc, timeout=15) and \
            self.is_displayed(self.email_label_loc, timeout=15) and \
@@ -69,7 +69,4 @@ class FormsPracticeFormArea(BasePage):
            self.is_displayed(self.state_city_label_loc, timeout=15) and \
            self.is_displayed(self.state_loc, timeout=15) and \
            self.is_displayed(self.city_loc, timeout=15) and \
-           self.is_displayed(self.submit_loc, timeout=15):
-            return True
-        else:
-            return False
+           self.is_displayed(self.submit_loc, timeout=15)

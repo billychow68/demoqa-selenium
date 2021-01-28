@@ -17,12 +17,8 @@ class ElementsButtonsArea(BasePage):
         self.driver.get(config.baseurl + self.buttons_url)
 
     def validate_page_load(self):
-        if self.is_displayed(self.doubleclick_loc, timeout=15) and \
-           self.is_displayed(self.rightclick_loc, timeout=15):
-            # if self.is_displayed(self.clickme_loc, 5):
-            return True
-        else:
-            return False
+        assert self.is_displayed(self.doubleclick_loc, timeout=15) and \
+           self.is_displayed(self.rightclick_loc, timeout=15)
 
     def select_doubleclick_button(self):
         self.double_click(self.doubleclick_loc)
@@ -31,14 +27,8 @@ class ElementsButtonsArea(BasePage):
         self.right_click(self.rightclick_loc)
 
     def validate_doubleclick(self):
-        if "You have done a double click" in self.driver.page_source:
-            return True
-        else:
-            return False
+        assert "You have done a double click" in self.driver.page_source
 
     def validate_rightclick(self):
-        if "You have done a right click" in self.driver.page_source:
-            return True
-        else:
-            return False
+        assert "You have done a right click" in self.driver.page_source
 

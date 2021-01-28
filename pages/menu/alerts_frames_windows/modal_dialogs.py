@@ -23,7 +23,7 @@ class ElementsModalDialogsArea(BasePage):
         self.driver.get(config.baseurl + self.modals_path)
 
     def validate_page_load(self):
-        return (self.is_displayed(self.small_modal_loc, timeout=15)) and \
+        assert (self.is_displayed(self.small_modal_loc, timeout=15)) and \
                (self.is_displayed(self.large_modal_loc, timeout=15))
 
     def select_small_modal(self):
@@ -38,9 +38,7 @@ class ElementsModalDialogsArea(BasePage):
 
     def validate_small_modal(self):
         text = self.get_modal_dialog_text(self.small_modal_body_loc)
-        if 'This is a small modal. It has very less content' == text:
-            return True
-        return False
+        assert 'This is a small modal. It has very less content' == text
 
     def select_large_modal(self):
         if self.is_displayed(self.large_modal_loc, timeout=15):
@@ -54,7 +52,5 @@ class ElementsModalDialogsArea(BasePage):
 
     def validate_large_modal(self):
         text = self.get_modal_dialog_text(self.large_modal_body_loc)
-        if self.large_modal_text == text:
-            return True
-        return False
+        assert self.large_modal_text == text
 

@@ -9,4 +9,4 @@ class TestElementsTextboxArea:
     def test_page_load(self, driver):
         textbox_area = ElementsTextboxArea(driver)
         textbox_area.open_textbox_page()
-        assert textbox_area.validate_page_load()
+        textbox_area.validate_page_load()

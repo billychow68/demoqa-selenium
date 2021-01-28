@@ -37,11 +37,8 @@ class ElementsCheckBoxArea(BasePage):
         self.open_url(self.checkbox_path)
 
     def validate_page_load(self):
-        if self.is_displayed(self.home_toggle_loc, timeout=15) and \
-           self.is_displayed(self.home_checkbox_loc, timeout=15):
-            return True
-        else:
-            return False
+        assert self.is_displayed(self.home_toggle_loc, timeout=15) and \
+           self.is_displayed(self.home_checkbox_loc, timeout=15)
 
     def toggle_plus(self):
         self.click(self.plus_toggle_loc)
@@ -56,35 +53,28 @@ class ElementsCheckBoxArea(BasePage):
         self.click(self.home_checkbox_loc)
 
     def validate_select_all_checkboxes(self):
-        if self.validate_select_all_desktop_checkboxes() and \
-           self.validate_select_all_documents_checkboxes() and \
-           self.validate_select_all_documents_checkboxes():
-            return True
-        else:
-            return False
+        assert self.validate_select_all_desktop_checkboxes() and \
+           self.validate_select_all_documents_checkboxes()
 
     def validate_select_all_desktop_checkboxes(self):
         if self.desktop_text_success in self.driver.page_source and \
            self.notes_text_success in self.driver.page_source and \
            self.commands_text_success in self.driver.page_source:
             return True
-        else:
-            return False
+        return False
 
     def validate_select_all_documents_checkboxes(self):
         if self.validate_select_all_workspace_checkboxes() and \
            self.validate_select_all_office_checkboxes():
             return True
-        else:
-            return False
+        return False
 
     def validate_select_all_workspace_checkboxes(self):
         if self.react_text_success in self.driver.page_source and \
            self.angular_text_success in self.driver.page_source and \
            self.veu_text_success in self.driver.page_source:
             return True
-        else:
-            return False
+        return False
 
     def validate_select_all_office_checkboxes(self):
         if self.public_text_success in self.driver.page_source and \
@@ -92,13 +82,11 @@ class ElementsCheckBoxArea(BasePage):
            self.classified_text_success in self.driver.page_source and \
            self.general_text_success in self.driver.page_source:
             return True
-        else:
-            return False
+        return False
 
     def validate_select_all_downloads_checkboxes(self):
         if self.downloads_text_success in self.driver.page_source and \
            self.wordfile_text_success in self.driver.page_source and \
            self.excelfile_text_success in self.driver.page_source:
             return True
-        else:
-            return False
+        return False
