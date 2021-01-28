@@ -9,21 +9,21 @@ class TestElementsRadioButtonArea:
     def test_page_load(self, driver):
         radio_button_area = ElementsRadioButtonArea(driver)
         radio_button_area.open_radiobutton_page()
-        assert radio_button_area.validate_page_load()
+        radio_button_area.validate_page_load()
 
     def test_select_yes(self, driver):
         radio_button_area = ElementsRadioButtonArea(driver)
         radio_button_area.open_radiobutton_page()
         radio_button_area.select_yes()
-        assert radio_button_area.validate_select_yes_success()
+        radio_button_area.validate_select_yes_success()
 
     def test_select_impressive(self, driver):
         radio_button_area = ElementsRadioButtonArea(driver)
         radio_button_area.open_radiobutton_page()
         radio_button_area.select_impressive()
-        assert radio_button_area.validate_select_impressive_success()
+        radio_button_area.validate_select_impressive_success()
 
     def test_no_is_disabled(self, driver):
         radio_button_area = ElementsRadioButtonArea(driver)
         radio_button_area.open_radiobutton_page()
-        assert not radio_button_area.validate_no_is_disabled()
+        radio_button_area.validate_no_is_disabled()

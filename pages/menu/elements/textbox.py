@@ -23,7 +23,7 @@ class ElementsTextboxArea(BasePage):
         self.open_url(self.textbox_path)
 
     def validate_page_load(self):
-        if self.is_displayed(self.full_name_loc, timeout=15) and \
+        assert self.is_displayed(self.full_name_loc, timeout=15) and \
            self.is_displayed(self.full_name_label_loc, timeout=10) and \
            self.is_displayed(self.email_loc, timeout=15) and \
            self.is_displayed(self.email_label_loc, timeout=15) and \
@@ -31,10 +31,7 @@ class ElementsTextboxArea(BasePage):
            self.is_displayed(self.current_address_label_loc, timeout=15) and \
            self.is_displayed(self.elememts_permanentaddress_loc, timeout=15) and \
            self.is_displayed(self.permanent_address_label_loc, timeout=15) and \
-           self.is_displayed(self.submit_button_loc, timeout=15):
-            return True
-        else:
-            return False
+           self.is_displayed(self.submit_button_loc, timeout=15)
 
     def textbox_submit_form(self, name, email, cur_addr, perm_addr):
         if self.is_displayed(self.full_name_loc, timeout=15):

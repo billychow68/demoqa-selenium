@@ -25,35 +25,27 @@ class ElementsTabsArea(BasePage):
         self.open_url(self.tabs_path)
 
     def validate_page_load(self):
-        if self.is_displayed(self.what_tab_loc, timeout=15) and \
+        assert self.is_displayed(self.what_tab_loc, timeout=15) and \
            self.is_displayed(self.origin_tab_loc, timeout=15) and \
-           self.is_displayed(self.use_tab_loc, timeout=15):
-                return True
-        return False
+           self.is_displayed(self.use_tab_loc, timeout=15)
     
     def select_what_tab(self):
         if self.is_displayed(self.what_tab_loc, timeout=15):
             self.click(self.what_tab_loc)
 
     def validate_what_tab(self):
-        if self.is_text_displayed(self.what_text_loc, self.what_text):
-            return True
-        return False
+        assert self.is_text_displayed(self.what_text_loc, self.what_text)
 
     def select_origin_tab(self):
         if self.is_displayed(self.origin_tab_loc, timeout=15):
             self.click(self.origin_tab_loc)
 
     def validate_origin_tab(self):
-        if self.is_text_displayed(self.origin_text_loc, self.origin_text):
-            return True
-        return False
+        assert self.is_text_displayed(self.origin_text_loc, self.origin_text)
 
     def select_use_tab(self):
         if self.is_displayed(self.use_tab_loc, timeout=15):
             self.click(self.use_tab_loc)
             
     def validate_use_tab(self):
-        if self.is_text_displayed(self.use_text_loc, self.use_text):
-            return True
-        return False
+        assert self.is_text_displayed(self.use_text_loc, self.use_text)

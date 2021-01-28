@@ -9,19 +9,19 @@ class TestElementsButtonsArea:
     def test_page_load(self, driver):
         buttons_area = ElementsButtonsArea(driver)
         buttons_area.open_buttons_page()
-        assert buttons_area.validate_page_load()
+        buttons_area.validate_page_load()
 
     def test_doubleclick(self, driver):
         buttons_area = ElementsButtonsArea(driver)
         buttons_area.open_buttons_page()
         buttons_area.select_doubleclick_button()
-        assert buttons_area.validate_doubleclick()
+        buttons_area.validate_doubleclick()
 
     def test_rightclick(self, driver):
         buttons_area = ElementsButtonsArea(driver)
         buttons_area.open_buttons_page()
         buttons_area.select_rightclick_button()
-        assert buttons_area.validate_rightclick()
+        buttons_area.validate_rightclick()
 
     def test_dynamicclick(self, driver):
         pass

@@ -40,19 +40,10 @@ class HomePage(BasePage):
             self.find_element(self.interactions_loc).click()
 
     def validate_page_load(self):
-        if '<img class="banner-image" src="/images/WB.svg"' in self.driver.page_source:
-            return True
-        else:
-            return False
+        assert '<img class="banner-image" src="/images/WB.svg"' in self.driver.page_source
 
     def validate_elements_page(self):
-        if '<div class="main-header">Elements</div>' in self.driver.page_source:
-            return True
-        else:
-            return False
+        assert '<div class="main-header">Elements</div>' in self.driver.page_source
 
     def validate_forms_page(self):
-        if '<div class="main-header">Forms</div>' in self.driver.page_source:
-            return True
-        else:
-            return False
+        assert '<div class="main-header">Forms</div>' in self.driver.page_source

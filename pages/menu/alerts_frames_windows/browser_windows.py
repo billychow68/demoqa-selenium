@@ -19,7 +19,7 @@ class ElementsBrowserWindowsArea(BasePage):
         self.driver.get(config.baseurl + self.brw_wdw_path)
 
     def validate_page_load(self):
-        return (self.is_displayed(self.tab_btn_loc, timeout=15)) and \
+        assert (self.is_displayed(self.tab_btn_loc, timeout=15)) and \
                (self.is_displayed(self.wdw_btn_loc, timeout=15)) and \
                (self.is_displayed(self.msg_wdw_btn_loc, timeout=15))
 
@@ -30,7 +30,7 @@ class ElementsBrowserWindowsArea(BasePage):
 
     def validate_tab_button(self):
         self.url_to_be(config.baseurl + self.sample_path, timeout=15)
-        return ("https://demoqa.com/sample" == self.get_url()) and \
+        assert ("https://demoqa.com/sample" == self.get_url()) and \
                ("This is a sample page" in self.driver.page_source)
 
     def select_new_window_button(self):
