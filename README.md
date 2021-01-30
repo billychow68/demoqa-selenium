@@ -8,6 +8,17 @@ __Supported Browsers__ (at this time):
 1. Chrome version 87.0.4280.67
 1. Firefox version 84.0.2
 
+## Features
+ * Selenium Webdriver (Python binding)
+ * Pytest test framework
+ * Parallel execution
+ * Random execution
+ * Cross-browser support
+ * HTML report with screenshots and logs
+ * Categorize tests (smoke vs regression)
+ * No data collision
+ * Repeat N-time(s) execution
+ 
 ## Prerequisite Software
 
 1. Download and install [Python 3.9.0](https://www.python.org/downloads/release/python-390/) for Mac.
