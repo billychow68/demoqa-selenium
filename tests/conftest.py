@@ -10,39 +10,74 @@ from . import config
 
 def pytest_addoption(parser):
     """Pytest function to get command-line arguments."""
-    parser.addoption("--baseurl", action="store", default="https://demoqa.com",
-                     help="base URL for the application under test.")
-    parser.addoption("--browser", action="store", default="chrome",
-                     help="the browser to launch for testing.")
+    parser.addoption("--baseurl",
+                     action="store",
+                     default="https://demoqa.com",
+                     help="the base URL for the application under test.",
+                     )
+    parser.addoption("--browser",
+                     action="store",
+                     default="chrome",
+                     help="the browser to use for testing.",
+                     )
+    parser.addoption("--browserversion",
+                     action="store",
+                     default="87.0",
+                     help="the browser version to use for testing",
+                     )
+    parser.addoption("--host",
+                     action="store",
+                     default="saucelabs",
+                     help="where to run your tests: localhost or saucelabs",
+                     )
+    parser.addoption("--platform",
+                     action="store",
+                     default="macOS 10.15",
+                     help="the operating system to run your tests on (saucelabs only)",
+                     )
 
 @pytest.fixture(scope="function")
 def driver(request):
     """Fixture to create and destroy the webdriver"""
-
     # Store command-line arguments or defaults in the global variables in memory (not config.py)
     config.baseurl = request.config.getoption("--baseurl").lower()
     config.browser = request.config.getoption("--browser").lower()
+    config.browserversion = request.config.getoption("--browserversion").lower()
+    config.host = request.config.getoption("--host").lower()
+    config.platform = request.config.getoption("--platform").lower()
 
-    if config.browser == "chrome":
-        executable_path = os.path.join(rootpath.detect(), "vendor", "chromedriver")
-        driver = webdriver.Chrome(executable_path=executable_path,
-                                  service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
-    elif config.browser == "firefox":
-        profile = webdriver.FirefoxProfile()
-        # set download location and enable it
-        profile.set_preference("browser.download.dir", "/Users/billy/Downloads")
-        profile.set_preference("browser.download.folderList", 2)
-        # disable system download window using MIME types
-        profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "image/jpeg")
-        profile.set_preference("browser.download.manager.showWhenStarting", False)
-        profile.set_preference("pdfjs.disabled", True)
-        # create webdriver instance
-        executable_path = os.path.join(rootpath.detect(), "vendor", "geckodriver")
-        driver = webdriver.Firefox(firefox_profile=profile,
-                                   executable_path=executable_path)
-    else:
-        # Invalid --browser argument
-        sys.exit(1)
+    if config.host == "saucelabs":
+        dcaps = {}
+        dcaps["browserName"] = config.browser
+        dcaps["browserVersion"] = config.browserversion
+        dcaps["platformName"] = config.platform
+        # credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
+        # credentials = "billchow07" + ":" + "2de31427593c4cb1b4ea3f24e0867849"
+        # url = "https://" + credentials + "@ondemand.saucelabs.com/wd/hub"
+        url = "https://billchow07:2de31427593c4cb1b4ea3f24e0867849@ondemand.us-west-1.saucelabs.com:443/wd/hub"
+        driver = webdriver.Remote(url, dcaps)
+        pass
+    elif config.host == "localhost":
+        if config.browser == "chrome":
+            executable_path = os.path.join(rootpath.detect(), "vendor", "chromedriver")
+            driver = webdriver.Chrome(executable_path=executable_path,
+                                      service_args=["--verbose", "--log-path=/Users/billy/chromedriver.log"])
+        elif config.browser == "firefox":
+            profile = webdriver.FirefoxProfile()
+            # set download location and enable it
+            profile.set_preference("browser.download.dir", "/Users/billy/Downloads")
+            profile.set_preference("browser.download.folderList", 2)
+            # disable system download window using MIME types
+            profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "image/jpeg")
+            profile.set_preference("browser.download.manager.showWhenStarting", False)
+            profile.set_preference("pdfjs.disabled", True)
+            # create webdriver instance
+            executable_path = os.path.join(rootpath.detect(), "vendor", "geckodriver")
+            driver = webdriver.Firefox(firefox_profile=profile,
+                                       executable_path=executable_path)
+        else:
+            # Invalid --browser argument
+            sys.exit(1)
 
     # self.driver.implicitly_wait(10)
     driver.maximize_window()
