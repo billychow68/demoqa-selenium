@@ -10,6 +10,11 @@ from . import config
 
 def pytest_addoption(parser):
     """Pytest function to get command-line arguments."""
+    parser.addoption("--buildnum",
+                     action="store",
+                     default="1.0",
+                     help="the build number from Jenkins.",
+                     )
     parser.addoption("--baseurl",
                      action="store",
                      default="https://demoqa.com",
@@ -27,35 +32,48 @@ def pytest_addoption(parser):
                      )
     parser.addoption("--host",
                      action="store",
-                     default="saucelabs",
+                     default="localhost",
                      help="where to run your tests: localhost or saucelabs",
                      )
     parser.addoption("--platform",
                      action="store",
                      default="macOS 10.15",
-                     help="the operating system to run your tests on (saucelabs only)",
+                     help="the operating system to run your tests on (Sauce Labs only)",
+                     )
+    parser.addoption("--resolution",
+                     action="store",
+                     default="1600x1200",
+                     help="the screen resolution (Sauce Labs only)",
                      )
 
 @pytest.fixture(scope="function")
 def driver(request):
     """Fixture to create and destroy the webdriver"""
     # Store command-line arguments or defaults in the global variables in memory (not config.py)
+    config.buildnum = request.config.getoption("--buildnum").lower()
     config.baseurl = request.config.getoption("--baseurl").lower()
     config.browser = request.config.getoption("--browser").lower()
     config.browserversion = request.config.getoption("--browserversion").lower()
     config.host = request.config.getoption("--host").lower()
     config.platform = request.config.getoption("--platform").lower()
+    config.resolution = request.config.getoption("--resolution").lower()
 
     if config.host == "saucelabs":
-        dcaps = {}
-        dcaps["browserName"] = config.browser
-        dcaps["browserVersion"] = config.browserversion
-        dcaps["platformName"] = config.platform
-        # credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
-        # credentials = "billchow07" + ":" + "2de31427593c4cb1b4ea3f24e0867849"
-        # url = "https://" + credentials + "@ondemand.saucelabs.com/wd/hub"
-        url = "https://billchow07:2de31427593c4cb1b4ea3f24e0867849@ondemand.us-west-1.saucelabs.com:443/wd/hub"
-        driver = webdriver.Remote(url, dcaps)
+        url = "http://ondemand.us-west-1.saucelabs.com/wd/hub"
+        dcaps = {
+            'build': '1.2',
+            'platform': config.platform,
+            'browserName': config.browser,
+            'version': config.browserversion,
+            # 1024x768, 1152x864, 1280x960, 1376x1032, 1600x1200, 1920x1440, 2048x1536
+            'screenResolution': '1600x1200',
+            'name': request.cls.__name__ + "." + request.function.__name__,
+            # 'username': os.environ["SAUCE_USERNAME"],
+            # 'accessKey': os.environ["SAUCE_ACCESS_KEY"],
+            'username': "billchow07",
+            'accessKey': "2de31427593c4cb1b4ea3f24e0867849",
+        }
+        driver = webdriver.Remote(command_executor=url, desired_capabilities=dcaps)
         pass
     elif config.host == "localhost":
         if config.browser == "chrome":
@@ -122,5 +140,11 @@ def pytest_runtest_makereport(item, call):
             path = os.path.join(rootpath.detect(), "reports", "screenshot_" + timestamp + ".png")
             driver.save_screenshot(path)
             extra.append(pytest_html.extras.image(path))
+            if config.host == "saucelabs":
+                driver.execute_script("sauce:job-result=failed")
+        else:
+            if config.host == "saucelabs":
+                driver = item.funcargs['request'].getfixturevalue('driver')
+                driver.execute_script("sauce:job-result=passed")
         report.extra = extra
     pass
