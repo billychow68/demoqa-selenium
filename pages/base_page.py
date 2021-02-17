@@ -32,6 +32,10 @@ class BasePage:
         self.driver.execute_script(js)
         self._update_window_handles()
 
+    def open_file(self, path):
+        """Open URL using file:// and path"""
+        self.driver.get("file://" + path)
+
     def close(self):
         """Close tab"""
         self.driver.close()

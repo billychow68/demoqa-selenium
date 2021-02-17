@@ -1,4 +1,5 @@
 {
-  "path": "/Users/billy/Downloads",
+  "localhost_path": "/Users/billy/Downloads",
+  "saucelabs_path": "/Users/chef/Downloads",
   "file": "sampleFile.jpeg"
 }
