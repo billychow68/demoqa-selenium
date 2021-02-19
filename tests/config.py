@@ -1,4 +1,4 @@
-buildno = ""
+buildnum = ""
 baseurl = ""
 browser = ""
 browserversion = ""
