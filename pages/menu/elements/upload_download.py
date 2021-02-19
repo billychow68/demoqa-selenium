@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 import os
 import rootpath
+from selenium.webdriver.remote.file_detector import LocalFileDetector
 from tests import config
 import time
 
@@ -52,6 +53,8 @@ class ElementsUploadDownloadArea(BasePage):
         self._delete_sample_file(json_loader)
 
     def select_upload(self):
+        if config.host == "saucelabs":
+            self.driver.file_detector = LocalFileDetector()
         full_path = os.path.join(rootpath.detect(), "tests", "menu", "elements", "sampleFile.jpeg")
         self.find_element(self.upload_button_loc).send_keys(full_path)
 
