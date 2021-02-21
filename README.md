@@ -65,3 +65,4 @@ deactivate
 ```
 ## Demo
 [demo.mov](https://github.com/billychow68/demoqa-selenium/blob/main/demo/demo.mov)
+[saucelabs.mp4](https://github.com/billychow68/demoqa-selenium/blob/main/demo/saucelabs.mp4)
