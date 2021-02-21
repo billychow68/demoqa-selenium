@@ -18,13 +18,15 @@ __Supported Browsers__ (at this time):
  * Categorize tests (smoke vs regression)
  * No data collision
  * Repeat N-time(s) execution
+ * Sauce Labs support
  
-## Prerequisite Software
+## Prerequisite Software & Services
 
 1. Download and install [Python 3.9.0](https://www.python.org/downloads/release/python-390/) for Mac.
 1. Download and install [Chrome browser](https://www.google.com/chrome), [Firefox browser](https://www.mozilla.org/en-US/firefox/)
 1. Download and install to vendor/ directory [Chrome driver](https://sites.google.com/a/chromium.org/chromedriver/downloads), [Firefox driver](https://github.com/mozilla/geckodriver/releases)
 1. macOS notarization [for geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Notarization.html)
+1. [Sign-up](https://saucelabs.com/sign-up) for a Sauce Labs account (free-trial)
 
 ## Setup
 
@@ -41,6 +43,12 @@ make install
 demoqa
 ```
 You should see ```(.demoqa-selenium)``` in your command prompt.
+
+4. Set Sauce Labs Environment Variables in ~/bash_profile
+```
+export SAUCE_USERNAME="<SAUCE_LABS_USERNAME>"
+export SAUCE_ACCESS_KEY="<SAUCE_LABS_ACCESS_KEY>"
+```
 
 ## Execute the Tests
 ```
