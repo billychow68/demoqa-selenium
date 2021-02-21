@@ -17,6 +17,7 @@ class TestBrowserWindowWindowsArea:
         bw.validate_tab_button()
         bw.close()
 
+    @pytest.mark.xfail(reason="Sauce Labs bug: Contents of new window is incorrect.")
     def test_new_window(self, driver):
         bw = ElementsBrowserWindowsArea(driver)
         bw.open_browser_window_page()

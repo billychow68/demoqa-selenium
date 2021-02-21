@@ -1,7 +1,6 @@
 from pages.menu.elements.upload_download import ElementsUploadDownloadArea
 import pytest
 
-
 class TestUploadDownloadArea:
 
     def test_page_load(self, driver):

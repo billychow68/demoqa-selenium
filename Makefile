@@ -14,7 +14,8 @@ test:
 	# sequential execution:
 	# pytest -s -v --setup-show -p no:randomly
 	# parallel execution:
-	pytest -s -v --setup-show -n 4 -p no:randomly --html=reports/report.html --self-contained-html --count 1 --browser=chrome --baseurl=https://demoqa.com
+	# pytest -s -v --setup-show -n 4 -p no:randomly --html=reports/report.html --self-contained-html --count 1 --browser=chrome --baseurl=https://demoqa.com
+	pytest -s -v --setup-show -n 4 -p no:randomly --html=reports/report.html --self-contained-html --count 1 --browser=chrome --baseurl=https://demoqa.com --host=saucelabs
 	# random execution:
 	# pytest -s -v --setup-show
 	# parallel and random execution:

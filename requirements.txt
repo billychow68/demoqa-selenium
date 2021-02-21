@@ -5,5 +5,9 @@ pytest-randomly==3.4.1
 pytest-repeat==0.8.0
 pytest-xdist==2.1.0
 rootpath==0.1.1
-selenium==3.141.0
-
+# selenium==3.141.0
+# 4.0.0.a5 fixes https://github.com/SeleniumHQ/selenium/issues/8762 where remote file upload fails
+# Test case: TestUploadDownloadArea::test_upload_button
+selenium==4.0.0.a5
+# todo: 4.0.0.b1 doesn't fix the remote file upload bug (why?)
+# selenium==4.0.0.b1

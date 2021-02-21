@@ -9,6 +9,5 @@ class TestPracticeFormArea:
         """This method validates the practice page load"""
         forms_practice_area = FormsPracticeFormArea(driver)
         forms_practice_area.open_practice_form_url()
-        # assert forms_practice_area.validate_page_load()
-        assert False
+        forms_practice_area.validate_page_load()
 

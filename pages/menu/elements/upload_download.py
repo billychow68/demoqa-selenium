@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 import os
 import rootpath
+from selenium.webdriver.remote.file_detector import LocalFileDetector
+from tests import config
 import time
 
 
@@ -17,8 +19,13 @@ class ElementsUploadDownloadArea(BasePage):
 
     def _delete_sample_file(self, json_loader):
         path = os.path.join(rootpath.detect(), "tests", "menu", "elements", "config.json")
-        config = json_loader(path)
-        full_path = os.path.join(config["path"], config["file"])
+        config_json = json_loader(path)
+        if config.host == "localhost":
+            full_path = os.path.join(config_json["localhost_path"], config_json["file"])
+        elif config.host == "saucelabs":
+            # todo: how to delete test file on Sauce Labs?
+            # full_path = os.path.join(config_json["saucelabs_path"], config_json["file"])
+            return
         if os.path.exists(full_path):
             os.remove(full_path)
 
@@ -30,18 +37,24 @@ class ElementsUploadDownloadArea(BasePage):
             self.is_displayed(self.upload_button_loc, timeout=15)
 
     def select_download(self, json_loader):
-        self._delete_sample_file(json_loader)
+        # self._delete_sample_file(json_loader)
         if self.is_displayed(self.download_button_loc, timeout=15):
             self.find_element(self.download_button_loc).click()
 
     def validate_download(self, json_loader):
         path = os.path.join(rootpath.detect(), "tests", "menu", "elements", "config.json")
-        config = json_loader(path)
-        full_path = os.path.join(config["path"], config["file"])
-        assert self.is_file_exists(full_path, timeout=15)
+        config_json = json_loader(path)
+        if config.host == "localhost":
+            full_path = os.path.join(config_json["localhost_path"], config_json["file"])
+        elif config.host == "saucelabs":
+            full_path = os.path.join(config_json["saucelabs_path"], config_json["file"])
+        self.open_file(full_path)
+        assert self.title_is("sampleFile.jpeg (275×183)")
         self._delete_sample_file(json_loader)
 
     def select_upload(self):
+        if config.host == "saucelabs":
+            self.driver.file_detector = LocalFileDetector()
         full_path = os.path.join(rootpath.detect(), "tests", "menu", "elements", "sampleFile.jpeg")
         self.find_element(self.upload_button_loc).send_keys(full_path)
 
