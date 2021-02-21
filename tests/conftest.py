@@ -70,8 +70,8 @@ def driver(request):
             'name': request.cls.__name__ + "." + request.function.__name__,
             # 'username': os.environ["SAUCE_USERNAME"],
             # 'accessKey': os.environ["SAUCE_ACCESS_KEY"],
-            'username': "billchow07",
-            'accessKey': "2de31427593c4cb1b4ea3f24e0867849",
+            'username': "safaripy",
+            'accessKey': "1429e5dababf4a0298feeac21c9677fa",
         }
         driver = webdriver.Remote(command_executor=url, desired_capabilities=dcaps)
         pass
