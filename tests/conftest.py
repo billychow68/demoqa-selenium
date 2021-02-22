@@ -68,10 +68,8 @@ def driver(request):
             # 1024x768, 1152x864, 1280x960, 1376x1032, 1600x1200, 1920x1440, 2048x1536
             'screenResolution': '1600x1200',
             'name': request.cls.__name__ + "." + request.function.__name__,
-            # 'username': os.environ["SAUCE_USERNAME"],
-            # 'accessKey': os.environ["SAUCE_ACCESS_KEY"],
-            'username': "safaripy",
-            'accessKey': "1429e5dababf4a0298feeac21c9677fa",
+            'username': os.environ["SAUCE_USERNAME"],
+            'accessKey': os.environ["SAUCE_ACCESS_KEY"],
         }
         driver = webdriver.Remote(command_executor=url, desired_capabilities=dcaps)
         pass
