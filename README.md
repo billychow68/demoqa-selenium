@@ -49,6 +49,7 @@ You should see ```(.demoqa-selenium)``` in your command prompt.
 export SAUCE_USERNAME="<SAUCE_LABS_USERNAME>"
 export SAUCE_ACCESS_KEY="<SAUCE_LABS_ACCESS_KEY>"
 ```
+Note: If using an IDE, be sure to set these environment variables in your run/debug configuration.
 
 ## Execute the Tests
 ```
